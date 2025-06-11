@@ -12,8 +12,7 @@ Explore real-world applications including:
 Each project emphasizes accessibility, security, and scalability—reflecting the mission of GiqComp Solutions to deliver tailored, innovative IT support and infrastructure services to businesses of all sizes.
 
 🌐 **Website**: [https://www.giqcompsolutions.com](https://www.giqcompsolutions.com)  
-📧 **Email**: info@giqcompsolutions.com  
-📞 **Phone**: +1 347-855-6008
+📧 **Contact**: info@giqcompsolutions.com
 
 ---
 
