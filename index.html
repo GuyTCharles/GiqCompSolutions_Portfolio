@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GiqComp_Solutions_Portfolio</title>
+    <!-- Logo icon -->
+    <link rel="icon" href="images/GiqCompSolutions-Logo.PNG" type="image/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        header,
+        footer {
+            background-color: #1E70F2;
+            color: #ffffff;
+        }
+
+        nav {
+            font-size: 17px;
+        }
+
+        .project-desc {
+            font-size: 15px !important;
+        }
+
+        .project-sub {
+            font-size: 15px !important;
+        }
+
+        .skills-title {
+            font-size: 16.5px;
+        }
+
+        /* Button Styles */
+        .button {
+            position: relative;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform:
+                cursor: pointer;
+            border: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .button::before,
+        .button::after {
+            content: "";
+            position: absolute;
+            width: 105%;
+            height: 50%;
+            background-color: transparent;
+            border: 1px solid rgb(134, 129, 124);
+            left: -2.5%;
+            z-index: -1;
+        }
+
+        .button::before {
+            border-bottom: 0;
+            top: -10%;
+        }
+
+        .button::after {
+            border-top: 0;
+            bottom: -10%;
+        }
+
+        .button-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 110%;
+            background-color: rgb(37, 99, 235);
+            transform: translateX(-105%) skew(-10deg);
+            transition: 0.7s ease;
+            z-index: 0;
+        }
+
+        .button:hover .button-overlay {
+            transform: translateX(-5%) skew(-10deg);
+        }
+
+        .button-text {
+            position: relative;
+            z-index: 2;
+            padding: .3rem;
+        }
+
+        /* Interactive Social Media Icons */
+        .item {
+            list-style: none;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .item a {
+            text-decoration: none;
+            width: 4.8rem;
+            height: 4.8rem;
+            background-color: #f0f9fe;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            border: 3px solid #f0f9fe;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .item a::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            z-index: 0;
+            scale: 1 0;
+            transform-origin: bottom;
+            transition: scale 0.5s ease;
+        }
+
+        .item:hover a::before,
+        .item:hover .icon-name {
+            scale: 1 1;
+        }
+
+        .icon {
+            font-size: 2rem;
+            color: midnightblue;
+            transition: 0.5s ease;
+            z-index: 2;
+        }
+
+        .item a:hover .icon,
+        .item:hover .icon {
+            color: #fff;
+            transform: rotateY(360deg);
+        }
+
+        .item:nth-child(1) {
+            --bg-color: #0077b5;
+        }
+        
+        .item:nth-child(2) {
+            --bg-color: #333;
+        }
+
+        .item:nth-child(3) {
+            --bg-color: #000;
+        }
+
+        .icon-name {
+            margin-top: 0.1rem;
+            color: #f0f9fe;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 15px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+
+        i {
+            color: lightsteelblue;
+        }
+
+        .phone-text,
+        .email-text {
+            font-size: 17px;
+        }
+
+        .phone-text:hover,
+        .email-text:hover {
+            color: lightsteelblue;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black text-base sm:text-lg">
+    <!-- Sticky container for navbar and profile image -->
+    <div class="sticky top-0 z-50">
+        <!-- Navigation menu -->
+        <nav class="fixed top-0 w-full z-50 py-2" style="background: linear-gradient(0deg, #3A8DFF, #1E70F2, #005BD1);">
+            <div class="mx-auto max-w-full px-10 flex items-center justify-between">
+                <div class="text-xl font-bold text-white py-1">
+                    Portfolio
+                </div>
+                <div class="flex space-x-4">
+                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#projects">Projects</a>
+                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#contact">Contact</a>
+                </div>
+            </div>
+        </nav>
+        <!-- Profile image -->
+        <div class="relative flex justify-center mb-1" style="margin-top: 5rem;">
+            <div class="rounded-full bg-white absolute top-0 left-1/2 transform -translate-x-1/2 z-50" style="width: 145px; height: 140px;">
+                <a href="#">
+                    <img alt="imageofProfile" class="rounded-full border-2 border-white-500" src="images/GiqCompSolutions-Logo.PNG" style="width: 145px; height: 140px;">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="mx-auto max-w-full px-10 pt-20">
+
+        <!-- Projects section -->
+        <section id="projects" class="my-20 p-4 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg">
+            <h2 class="text-4xl font-bold mb-10 text-center">
+                Projects
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Project 1 -->
+                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
+                    <img src="images/ConsultCareConnect_Website_Project.png" alt="Project 5" class="w-full h-auto">
+                    <h3 class="font-bold mt-4">ConsultCareConnect</h3>
+                    <p class="project-desc text-sm leading-relaxed mb-3">
+                        This virtual health consultation platform is designed to connect users with personalized medical support and symptom-checking tools. It enables users to upload and manage medical records, explore a symptom checker powered by integrated Google Custom Search, and access a user-friendly help center. The UI is optimized with dark-mode support, animated models, and intuitive feedback messaging for inaccessible file types, emphasizing accessibility, dynamic UI behavior, and user privacy, making it ideal for real-world telehealth applications.
+                    </p>
+                    <p class="project-sub font-bold text-xs mb-4">Technology: HTML, CSS, JS, LocalStorage, Google Search API</p>
+                    <div class="flex space-x-9">
+                        <a href="https://guytcharles.github.io/ConsultCareConnect/homepage.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
+                    <img src="images/PlanifyVerse.png" alt="Project 2" class="w-full h-auto">
+                    <h3 class="font-bold mt-4">PlanifyVerse</h3>
+                    <p class="project-desc text-sm leading-relaxed mb-3">
+                        An AI platform designed to create personalized study plans through OpenAI API integration. The website allows users to enter their subjects, available schedules, and learning objectives to generate concise or detailed study plans. Its intuitive interface, responsive design, and features like dynamic theme switching and PDF export simplify the study-planning process for learners of all backgrounds.
+                    </p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript, Flask/Python, OpenAI API</p>
+                    <div class="flex space-x-9">
+                        <a href="https://planifyverse.onrender.com" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
+                    <img src="images/Bug-Report-App-Project.png" alt="Project 3" class="w-full h-auto">
+                    <h3 class="font-bold mt-4">Bug Report App</h3>
+                    <p class="project-desc text-sm leading-relaxed mb-3">
+                        A robust web application designed to streamline the process of reporting, tracking, and managing software bugs. The app provides users with a simple interface to submit new bug reports, update existing ones, and view all reported issues in a structured format. It enhances collaboration between developers and testers by maintaining an organized record of bugs, ensuring effective communication and faster resolution.
+                    </p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript, PHP, MySQL</p>
+                    <div class="flex space-x-9">
+                        <a href="https://bugreportapp.sytes.net" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
+                    <img src="images/My_To-Do_List_App_Project.png" alt="Project 4" class="w-full h-auto">
+                    <h3 class="font-bold mt-4">My To-Do List</h3>
+                    <p class="project-desc text-sm leading-relaxed mb-3">
+                        A user-friendly To-Do List application that lets users add, prioritize (high, medium, low), and manage tasks efficiently. Users can mark tasks as completed, edit descriptions, and delete tasks. Tasks are stored in local storage for persistence across sessions. The app features input validation to prevent HTML injection, smooth scrolling, and a responsive design for both desktop and mobile devices.
+                    </p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
+                    <div class="flex space-x-8">
+                        <a href="https://guytcharles.github.io/My-To-Do-List/index-App.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
+                    <img src="images/Pacific_Trails_Resort_Site_Project.png" alt="Project 5" class="w-full h-auto">
+                    <h3 class="font-bold mt-4">Pacific Trails Resort</h3>
+                    <p class="project-desc text-sm leading-relaxed mb-3">
+                        A responsive website for Pacific Trails Resort on the Northern California coast, featuring information on private yurts, resort activities, and dining options. The site features a hamburger menu for mobile navigation, drag-and-drop package selection, and geolocation functionality to show nearby trails. Users can view a video about the resort, explore activities, and contact the resort through the site.
+                    </p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
+                    <div class="flex space-x-8">
+                        <a href="https://guytcharles.github.io/Pacific-Trails-Resort/" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
+                    <img src="images/Places_Album_Project.png" alt="Project 6" class="w-full h-auto">
+                    <h3 class="font-bold mt-4">Places Album</h3>
+                    <p class="project-desc text-sm leading-relaxed mb-3">
+                        A dynamic photo album featuring various locations, built with Bootstrap and AJAX. The site loads images from a remote API and displays them in a responsive, visually appealing grid layout. It features a clean and modern design with an error-handling feature to handle network issues. Users can view various places with descriptions retrieved asynchronously, ensuring a seamless and efficient browsing experience.
+                    </p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
+                    <div class="flex space-x-9">
+                        <a href="https://guytcharles.github.io/Places-Album/" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
+                    <img src="images/GCArthriFit_Project.png" alt="Project 7" class="w-full h-auto">
+                    <h3 class="font-bold mt-4">GCArthriFit</h3>
+                    <p class="project-desc text-sm leading-relaxed mb-3">
+                        An educational platform designed to provide users with valuable information and resources related to arthritis management and fitness. In a responsive design, the website features detailed content on exercise routines, dietary advice, and wellness tips tailored specifically for individuals with arthritis, along with seamless navigation to enhance user experience.
+                    </p>
+                    <p class="project-sub font-bold text-xs mb-4">Technology: Weebly.com (Web Hosting and Development Hub)</p>
+                    <div class="flex space-x-9">
+                        <a href="https://gcarthrifit.weebly.com/" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
+                    <img src="images/ConsultCareConnect_Project.png" alt="Project 8" class="w-full h-auto">
+                    <h3 class="font-bold mt-4">ConsultCareConnect</h3>
+                    <p class="project-desc text-sm leading-relaxed mb-3">
+                        A virtual healthcare app designed for users with busy schedules, in remote locations, or looking for quick, non-urgent consultations. The platform allows users to easily book consultations, manage health information, and receive personalized insights through a symptom checker tool. Emphasizing simplicity, accessibility, and robust data security for its users.
+                    </p>
+                    <p class="project-sub font-bold text-xs mb-4">Technology: Figma (Designing and Prototyping Wireframe)</p>
+                    <div class="flex space-x-9">
+                        <a href="https://www.figma.com/proto/PGFO2sqmv02KvQQIlJux7n/Material-Design-Theme-Kit-(Community)?node-id=37386-3122&t=D4U8opDF5iLUrX0i-1" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact section -->
+        <footer class="my-12 p-7 text-white rounded-lg flex flex-col items-center text-center" style="background: linear-gradient(0deg, #3A8DFF, #1E70F2, #005BD1);">
+            <!-- Left side: Contact Info -->
+            <div id="contact" class="w-full lg:w-1/2 mb-0 lg:mb-0 flex flex-col items-center text-center">
+                <h2 class="text-3xl font-bold mb-5">Get in Touch</h2>
+
+                <!-- Phone & Email -->
+                <div class="mb-2">
+                    <a href="tel:+13478556008" class="phone-text">
+                        <i class="fas fa-phone mr-1"></i>
+                        +1 347-855-6008
+                    </a>
+                </div>
+                <div class="mb-2">
+                    <a href="mailto:example@example.com" class="email-text">
+                        <i class="fas fa-envelope mr-2"></i>
+                        info@giqcompsolutions.com
+                    </a>
+                </div>
+
+                <!-- Social Media Icons -->
+                <ul class="flex space-x-4 mt-5">
+                    <li class="item linkedin">
+                        <a href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank">
+                            <i class="fa-brands fa-linkedin icon"></i>
+                        </a>
+                        <span class="icon-name">LinkedIn</span>
+                    </li>
+
+                    <li class="item github">
+                        <a href="https://github.com/GuyTCharles" target="_blank">
+                            <i class="fa-brands fa-github icon"></i>
+                        </a>
+                        <span class="icon-name">GitHub</span>
+                    </li>
+
+                    <li class="item codepen">
+                        <a href="https://codepen.io/Guy-Thierry-Charles" target="_blank">
+                            <i class="fa-brands fa-codepen icon"></i>
+                        </a>
+                        <span class="icon-name">CodePen</span>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
