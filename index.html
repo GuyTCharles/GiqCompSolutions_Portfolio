@@ -123,94 +123,145 @@
             color: lightsteelblue;
         }
 
-        /* Ensure footer always flexes properly */
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 80%;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 13px;
+            margin: 12px 0 10px 0;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #0056b3;
+        }
+
+        .share-button {
+            padding: 10px;
+            background-color: #007bff;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            max-width: fit-content;
+        }
+
+        .share-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .share-button img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .share-button-text {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 7px;
+        }
+
+        /* Base footer layout: keep wrap, align top by default */
         footer {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            /* default: center both blocks */
+            /* Center blocks on small by default */
             align-items: flex-start;
-            gap: 2rem;
-            /* optional spacing */
         }
 
-        /* ✅ Base footer layout: flex & wrap */
-        footer {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            /* Mobile: stack & center */
-            align-items: flex-start;
-            gap: 2rem;
-            /* Optional: space between left & right */
-        }
-
-        /* ✅ Contact: center by default, left on large */
-        #contact {
+        /* Left side: Contact info block — center text and items on small screens */
+        footer>div:first-child {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            width: 100%;
         }
 
-        /* ✅ QR container: center by default, shrink content width */
-        footer>div:last-child {
+        /* Right side: QR code share button block — center on small screens */
+        footer>div:nth-child(2) {
             display: flex;
             justify-content: center;
             width: 100%;
         }
 
-        footer>div:last-child .QRcode {
-            width: auto;
-            /* shrink to image size */
-        }
-
-        /* ✅ Large screens: side-by-side, properly aligned */
+        /* On large screens: switch to side by side */
         @media (min-width: 1024px) {
             footer {
                 justify-content: space-between;
+                align-items: flex-start;
             }
 
-            #contact {
+            footer>div:first-child {
                 width: 48%;
                 align-items: flex-start;
                 text-align: left;
             }
 
-            footer>div:last-child {
+            footer>div:nth-child(2) {
                 width: auto;
-                /* shrink to content */
+                /* let it shrink to QR code content */
                 justify-content: flex-end;
                 flex: 1;
-                /* push to right edge */
             }
         }
 
-        .QRcode {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #ffffff;
-            text-decoration: none;
-            border: none;
-            border-radius: 10px;
-            cursor:default;
-            transition: background-color 0.3s;
-        }
+        @media (max-width: 1024px) {
+            .icon-name {
+                margin-bottom: 40px;
+            }
 
-        .QRcode:hover {
-            background-color: #0056b3;
-        }
-        
-        .QRcode img {
-            border-radius: 10px;
-        }
-
-        .QRcode-text {
-            font-weight: bold;
-            text-align: center;
-            margin-top: 7px;
+            .share-button {
+                margin-bottom: 16px;
+            }
         }
     </style>
 </head>
@@ -291,7 +342,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Project 4 -->
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
                     <a href="https://bugreportapp.sytes.net" target="_blank">
@@ -334,7 +385,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </section>
 
@@ -377,13 +428,75 @@
             </div>
             <!-- Right side: QR Code -->
             <div class="flex justify-center lg:justify-end">
-                <div class="QRcode">
+                <div class="share-button" onclick="shareProfile()">
                     <img src="images/Business-Card_QR-Code.png" alt="Profile Card" class="w-full h-auto max-w-xs">
-                    <p class="QRcode-text">SCAN QR CODE</p>
+                    <p class="share-button-text">SCAN QR CODE</p>
+                </div>
+            </div>
+            <!-- Fallback Modal: Download & Share via Email -->
+            <div id="shareModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2 style="font-weight: bold; margin-bottom: -13px;">SAVE THIS QR CODE</h2>
+                    <!-- Modal fallback message, hidden by default -->
+                    <p id="fallbackMessage" style="display: none;">
+                        Your browser doesn't support direct sharing.<br>
+                        Please download the QR Code.
+                    </p>
+
+                    <img src="images/Business-Card_QR-Code.png" alt="Profile QR Code" style="max-width:200px; display:block; margin: 20px auto;">
+
+                    <a href="images/Business-Card_QR-Code.png" download="Business-Card_QR-Code.png" class="download-btn">Download QR Code</a>
                 </div>
             </div>
         </footer>
     </div>
+    <script>
+        async function shareProfile() {
+            const fileUrl = 'images/Business-Card_QR-Code.png';
+
+            try {
+                const response = await fetch(fileUrl);
+                const blob = await response.blob();
+                const file = new File([blob], 'Business-Card_QR-Code.png', {
+                    type: blob.type
+                });
+
+                if (navigator.canShare && navigator.canShare({
+                        files: [file]
+                    })) {
+                    await navigator.share({
+                        files: [file],
+                        title: 'Guy Thierry Charles Business Card',
+                        text: 'Scan this QR Code to connect!'
+                    });
+                } else {
+                    document.getElementById('shareModal').style.display = 'flex';
+                    // remove 'hidden' to show the fallback text
+                    document.getElementById('fallbackMessage').classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Sharing failed:', error);
+                document.getElementById('shareModal').style.display = 'flex';
+                document.getElementById('fallbackMessage').classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('shareModal').style.display = 'none';
+            // add 'hidden' to hide the fallback text
+            document.getElementById('fallbackMessage').classList.add('hidden');
+        }
+
+        // Close modal and hide message when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('shareModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.getElementById('fallbackMessage').classList.add('hidden');
+            }
+        };
+    </script>
 </body>
 
 </html>
