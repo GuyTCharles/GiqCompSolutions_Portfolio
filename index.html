@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>GiqComp_Solutions_Portfolio</title>
     <!-- Logo icon -->
-    <link rel="icon" href="images/GiqCompSolutions_New-Logo-Cropped.png" type="image/jpg">
+    <link rel="icon" href="images/GiqCompSolutions-Logo.PNG" type="image/jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -122,6 +122,96 @@
         .email-text:hover {
             color: lightsteelblue;
         }
+
+        /* Ensure footer always flexes properly */
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* default: center both blocks */
+            align-items: flex-start;
+            gap: 2rem;
+            /* optional spacing */
+        }
+
+        /* ✅ Base footer layout: flex & wrap */
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Mobile: stack & center */
+            align-items: flex-start;
+            gap: 2rem;
+            /* Optional: space between left & right */
+        }
+
+        /* ✅ Contact: center by default, left on large */
+        #contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* ✅ QR container: center by default, shrink content width */
+        footer>div:last-child {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        footer>div:last-child .QRcode {
+            width: auto;
+            /* shrink to image size */
+        }
+
+        /* ✅ Large screens: side-by-side, properly aligned */
+        @media (min-width: 1024px) {
+            footer {
+                justify-content: space-between;
+            }
+
+            #contact {
+                width: 48%;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            footer>div:last-child {
+                width: auto;
+                /* shrink to content */
+                justify-content: flex-end;
+                flex: 1;
+                /* push to right edge */
+            }
+        }
+
+        .QRcode {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            cursor:default;
+            transition: background-color 0.3s;
+        }
+
+        .QRcode:hover {
+            background-color: #0056b3;
+        }
+        
+        .QRcode img {
+            border-radius: 10px;
+        }
+
+        .QRcode-text {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 7px;
+        }
     </style>
 </head>
 
@@ -151,7 +241,7 @@
     </div>
 
     <!-- Main content -->
-    <div class="mx-auto max-w-full px-10 pt-20">
+    x<div class="mx-auto max-w-full px-10 pt-20">
 
         <!-- Projects section -->
         <section id="projects" class="my-20 p-4 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg">
@@ -194,15 +284,15 @@
                         <img src="images/Pacific_Trails_Resort_Site_Project.png" alt="Project 3" class="w-full h-auto">
                     </a>
                     <h3 class="font-bold mt-4 mb-2">Pacific Trails Resort</h3>
-                    <p class="project-desc text-sm leading-relaxed mb-3">A responsive resort website with info on private yurts, activities, and dining. Includes mobile navigation, geolocation trails, and video tours, providing users with an immersive experience of Northern California’s coast.</p>
+                    <p class="project-desc text-sm leading-relaxed mb-3">A responsive resort website with private yurts, activities, and dining info. Includes mobile navigation, geolocation trails, and video tours, providing users with an immersive experience of Northern California’s coast.</p>
                     <div class="flex justify-center">
                         <a href="https://guytcharles.github.io/Pacific-Trails-Resort/" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-3 mt-2 rounded transition duration-200">
                             Live Demo
                         </a>
                     </div>
                 </div>
-
-                  <!-- Project 4 -->
+                
+                <!-- Project 4 -->
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
                     <a href="https://bugreportapp.sytes.net" target="_blank">
                         <img src="images/Bug-Report-App-Project.png" alt="Project 5" class="w-full h-auto">
@@ -236,7 +326,7 @@
                         <img src="images/My_To-Do_List_App_Project.png" alt="Project 6" class="w-full h-auto">
                     </a>
                     <h3 class="font-bold mt-4 mb-2">My To-Do List</h3>
-                    <p class="project-desc text-sm leading-relaxed mb-3">A task management app that allows users to add, prioritize, and organize their tasks. Features include color-coded priorities, local storage, a seamless user experience, and a responsive layout for optimal productivity across all devices.</p>
+                    <p class="project-desc text-sm leading-relaxed mb-3">A task management app allowing users to add, prioritize, and organize tasks. Features include color-coded priorities, local storage, a seamless user experience, and a responsive layout for optimal productivity across all devices.</p>
                     <div class="flex justify-center">
                         <a href="https://guytcharles.github.io/My-To-Do-List/index-App.html" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-3 mt-2 rounded transition duration-200">
                             Live Demo
@@ -244,13 +334,14 @@
                     </div>
                 </div>
 
+                
             </div>
         </section>
 
         <!-- Contact section -->
-        <footer class="my-12 p-7 text-white rounded-lg flex flex-col items-center text-center" style="background: linear-gradient(0deg, #3A8DFF, #1E70F2, #005BD1);">
+        <footer class="my-12 p-6 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg flex flex-wrap" style="background: linear-gradient(0deg, #3A8DFF, #1E70F2, #005BD1);">
             <!-- Left side: Contact Info -->
-            <div id="contact" class="w-full lg:w-1/2 mb-0 lg:mb-0 flex flex-col items-center text-center">
+            <div id="contact" class="w-full lg:w-1/2 mb-0 lg:mb-0 flex flex-col">
                 <h2 class="text-3xl font-bold mb-5">Get in Touch</h2>
 
                 <!-- Phone & Email -->
@@ -260,7 +351,7 @@
                         +1 347-855-6008
                     </a>
                 </div>
-                <div class="mb-2">
+                <div class="mb-0">
                     <a href="mailto:example@example.com" class="email-text">
                         <i class="fas fa-envelope mr-2"></i>
                         info@giqcompsolutions.com
@@ -268,7 +359,7 @@
                 </div>
 
                 <!-- Social Media Icons -->
-                <ul class="flex space-x-4 mt-5">
+                <ul class="flex space-x-4 mt-4">
                     <li class="item linkedin">
                         <a href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank">
                             <i class="fa-brands fa-linkedin icon"></i>
@@ -282,8 +373,14 @@
                         </a>
                         <span class="icon-name">Facebook</span>
                     </li>
-
                 </ul>
+            </div>
+            <!-- Right side: QR Code -->
+            <div class="flex justify-center lg:justify-end">
+                <div class="QRcode">
+                    <img src="images/Business-Card_QR-Code.png" alt="Profile Card" class="w-full h-auto max-w-xs">
+                    <p class="QRcode-text">SCAN QR CODE</p>
+                </div>
             </div>
         </footer>
     </div>
