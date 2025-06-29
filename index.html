@@ -209,59 +209,68 @@
             margin-top: 7px;
         }
 
-        /* Base footer layout: keep wrap, align top by default */
         footer {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            /* Center blocks on small by default */
-            align-items: flex-start;
+            align-items: stretch;
+            /* Ensures even height columns */
+            padding: 20px 0;
         }
 
-        /* Left side: Contact info block — center text and items on small screens */
+        /* Left Block: Contact Info */
         footer>div:first-child {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
             text-align: center;
+            flex: 1 1 100%;
+            padding: 10px;
         }
 
-        /* Right side: QR code share button block — center on small screens */
+        /* Right Block: QR Code */
         footer>div:nth-child(2) {
             display: flex;
             justify-content: center;
-            width: 100%;
+            align-items: center;
+            flex: 1 1 100%;
+            padding: 10px;
         }
 
-        /* On large screens: switch to side by side */
-        @media (min-width: 1024px) {
+        /* Side-by-side layout on medium+ screens */
+        @media (min-width: 600px) {
             footer {
+                flex-wrap: nowrap;
                 justify-content: space-between;
-                align-items: flex-start;
+                align-items: stretch;
+                padding: 20px 0;
+                gap: 20px;
+            }
+
+            footer>div:first-child,
+            footer>div:nth-child(2) {
+                flex: 0 0 48%;
+                padding: 0;
             }
 
             footer>div:first-child {
-                width: 48%;
                 align-items: flex-start;
                 text-align: left;
             }
 
             footer>div:nth-child(2) {
-                width: auto;
-                /* let it shrink to QR code content */
                 justify-content: flex-end;
-                flex: 1;
+                align-items: center;
             }
         }
 
-        @media (max-width: 1024px) {
-            .icon-name {
-                margin-bottom: 40px;
-            }
-
-            .share-button {
-                margin-bottom: 16px;
-            }
+        /* Image scaling fix */
+        footer img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
         }
     </style>
 </head>
@@ -296,7 +305,7 @@
 
         <!-- Projects section -->
         <section id="projects" class="my-16 p-4 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg" style="margin-top: 6rem;">
-            <h2 class="text-3xl font-bold mb-10 text-center">
+            <h2 class="text-3xl font-bold mb-8 p-2 text-center">
                 Projects
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -390,34 +399,31 @@
         </section>
 
         <!-- Contact section -->
-        <footer class="my-12 p-6 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg flex flex-wrap" style="background: linear-gradient(0deg, #3A8DFF, #1E70F2, #005BD1);">
-            <!-- Left side: Contact Info -->
-            <div id="contact" class="w-full lg:w-1/2 mb-0 lg:mb-0 flex flex-col">
+        <footer class="my-8 p-6 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg flex flex-wrap" style="background: linear-gradient(0deg, #3A8DFF, #1E70F2, #005BD1);">
+            <!-- Left Side: Contact Info -->
+            <div class="w-full sm:basis-1/2 sm:pr-4 flex flex-col items-center sm:items-start text-center sm:text-left">
                 <h2 class="text-3xl font-bold mb-5">Get in Touch</h2>
 
-                <!-- Phone & Email -->
+                <!-- Contact Info -->
                 <div class="mb-2">
                     <a href="tel:+17044457288" class="phone-text">
-                        <i class="fas fa-phone mr-1"></i>
-                        +1 704-445-7288
+                        <i class="fas fa-phone mr-1"></i> +1 704-445-7288
                     </a>
                 </div>
-                <div class="mb-0">
-                    <a href="mailto:example@example.com" class="email-text">
-                        <i class="fas fa-envelope mr-2"></i>
-                        info@giqcompsolutions.com
+                <div>
+                    <a href="mailto:info@giqcompsolutions.com" class="email-text">
+                        <i class="fas fa-envelope mr-2"></i> info@giqcompsolutions.com
                     </a>
                 </div>
 
-                <!-- Social Media Icons -->
+                <!-- Social Links -->
                 <ul class="flex space-x-4 mt-4">
                     <li class="item linkedin">
-                        <a href="https://www.linkedin.com/company/giqcomp-solutions/" target="_blank">
+                        <a href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank">
                             <i class="fa-brands fa-linkedin icon"></i>
                         </a>
                         <span class="icon-name">LinkedIn</span>
                     </li>
-
                     <li class="item facebook">
                         <a href="https://www.facebook.com/profile.php?id=61577062780532" target="_blank">
                             <i class="fa-brands fa-facebook-f icon"></i>
@@ -426,17 +432,18 @@
                     </li>
                 </ul>
             </div>
-             <!-- Right side: Share Button / QR Code -->
-            <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+
+            <!-- Right Side: QR Code -->
+            <div class="w-full sm:basis-1/2 flex justify-center sm:justify-end">
                 <div class="share-button cursor-pointer" onclick="shareProfile()">
-                    <img src="images/Business-Card_QR-Code.png" alt="Profile Card" class="w-auto h-auto max-w-[230px] lg:max-w-[230px] xl:max-w-[250px] rounded-md">
+                    <img src="images/Business-Card_QR-Code.png" alt="Profile Card" class="w-auto h-auto max-w-[180px] sm:max-w-[200px] md:max-w-[230px] rounded-md">
                 </div>
             </div>
             <!-- Fallback Modal: Download & Share via Email -->
             <div id="shareModal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal()">&times;</span>
-                    <!-- <h2 style="font-weight: bold; margin-bottom: -13px;">SAVE THIS QR CODE</h2> -->
+                    <!--<h2 style="font-weight: bold; margin-bottom: -13px;">SAVE THIS QR CODE</h2>-->
                     <!-- Modal fallback message, hidden by default -->
                     <p id="fallbackMessage" style="display: none;">
                         Your browser doesn't support direct sharing.<br>
